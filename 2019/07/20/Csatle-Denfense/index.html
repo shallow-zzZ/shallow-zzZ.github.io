@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="二分答案,差分,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Castle Denfense题目来源 CodeForces-954G题目描述Today you are going to lead a group of elven archers to defend the castle that is attacked by an army of angry orcs. Three sides of the castle are protected by i">
+<meta name="keywords" content="二分答案,差分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Csatle Denfense">
+<meta property="og:url" content="http://yoursite.com/2019/07/20/Csatle-Denfense/index.html">
+<meta property="og:site_name" content="shallow-zzZのblog">
+<meta property="og:description" content="Castle Denfense题目来源 CodeForces-954G题目描述Today you are going to lead a group of elven archers to defend the castle that is attacked by an army of angry orcs. Three sides of the castle are protected by i">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-20T04:49:14.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Csatle Denfense">
+<meta name="twitter:description" content="Castle Denfense题目来源 CodeForces-954G题目描述Today you are going to lead a group of elven archers to defend the castle that is attacked by an army of angry orcs. Three sides of the castle are protected by i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/20/Csatle-Denfense/">
+
+
+
+
+
+  <title>Csatle Denfense | shallow-zzZのblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shallow-zzZのblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/Csatle-Denfense/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shallow-zzZ">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shallow-zzZのblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Csatle Denfense</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-20T12:12:23+08:00">
+                2019-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Castle-Denfense"><a href="#Castle-Denfense" class="headerlink" title="Castle Denfense"></a>Castle Denfense</h1><h5 id="题目来源-CodeForces-954G"><a href="#题目来源-CodeForces-954G" class="headerlink" title="题目来源 CodeForces-954G"></a>题目来源 CodeForces-954G</h5><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>Today you are going to lead a group of elven archers to defend the castle that is attacked by an army of angry orcs. Three sides of the castle are protected by impassable mountains and the remaining side is occupied by a long wall that is split into n sections. At this moment there are exactly ai archers located at the i-th section of this wall. You know that archer who stands at section i can shoot orcs that attack section located at distance not exceeding r, that is all such sections j that |i - j| ≤ r. In particular, r = 0 means that archers are only capable of shooting at orcs who attack section i.</p>
+<p>Denote as defense level of section i the total number of archers who can shoot at the orcs attacking this section. Reliability of the defense plan is the minimum value of defense level of individual wall section.</p>
+<p>There is a little time left till the attack so you can’t redistribute archers that are already located at the wall. However, there is a reserve of k archers that you can distribute among wall sections in arbitrary way. You would like to achieve maximum possible reliability of the defence plan.</p>
+<a id="more"></a>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>&nbsp;&nbsp;The first line of the input contains three integers n, r and k (1 ≤ n ≤ 500 000, 0 ≤ r ≤ n, 0 ≤ k ≤ 1018) — the number of sections of the wall, the maximum distance to other section archers can still shoot and the number of archers yet to be distributed along the wall. The second line contains n integers a1, a2, …, an (0 ≤ ai ≤ 109) — the current number of archers at each section.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>&nbsp;&nbsp;Print one integer — the maximum possible value of defense plan reliability, i.e. the maximum possible value of minimum defense level if we distribute k additional archers optimally.</p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><h4 id="input"><a href="#input" class="headerlink" title="input"></a>input</h4><p>5 0 6<br>5 4 3 4 9</p>
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><p>5</p>
+<h4 id="input-1"><a href="#input-1" class="headerlink" title="input"></a>input</h4><p>4 2 0<br>1 2 3 4</p>
+<h4 id="output-1"><a href="#output-1" class="headerlink" title="output"></a>output</h4><p>6</p>
+<h4 id="input-2"><a href="#input-2" class="headerlink" title="input"></a>input</h4><p>5 1 1<br>2 1 2 1 2</p>
+<h4 id="output-2"><a href="#output-2" class="headerlink" title="output"></a>output</h4><p>3</p>
+<p>题目要求最小的安全系数最大，在dalao的点拨下，这类问题应该立马想到二分，然而我还是菜啊，看到题目没有想到和二分有半点联系。。。。</p>
+<p>回归正题，在想到二分答案之后，难点就转移到了check函数的判断。需要另外一个数组b利用差分的思想来记录新增加的弓箭手可以射到的位置，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">bool check(ll x)&#123;</span><br><span class="line">    memset(b,0,sizeof(b));</span><br><span class="line">    ll kk=k, add=0;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">        ll now=sum[min(i+r,n)]-sum[max(0,i-r-1)]; //前缀和数组记算未增加弓箭手的安全系数</span><br><span class="line">        add+=b[i]; //用来减去不能普及到该位置的新增弓箭手的个数，联系下面b数组的更新更加方便理解</span><br><span class="line">        if(now+add&gt;=x) continue;</span><br><span class="line">        else&#123;</span><br><span class="line">            ll d=x-add-now;</span><br><span class="line">            add+=d;</span><br><span class="line">            kk-=d;</span><br><span class="line">            if(kk&lt;0) return false;</span><br><span class="line">            b[i+2*r+1]-=d; //</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写好了check函数之后，本以为题目迎刃而解，结果tle，在更新了答案初始范围之后AC。<br>可是后来再想一想，好像区间大一点也不会增加很多时间，玄学debug。。。<br>还有可以使用scanf、printf加快输入输出，而且这个貌似影响还挺大，用cin、cout 1200ms；加了一句神奇的语句之后加快到476ms。。。这个世界好神奇。AC代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define ll long long</span><br><span class="line">#define IO ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)</span><br><span class="line">const ll INF = 0x3f3f3f3f3f3f3f3f;</span><br><span class="line">const int maxn  = 5e5+5;</span><br><span class="line"></span><br><span class="line">int n,r;</span><br><span class="line">ll k,sum[maxn],a[maxn],b[maxn],l=INF,rr=INF;</span><br><span class="line">bool check(ll x)&#123;</span><br><span class="line">    memset(b,0,sizeof(b));</span><br><span class="line">    ll kk=k, add=0;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">        ll now=sum[min(i+r,n)]-sum[max(0,i-r-1)];</span><br><span class="line">        add+=b[i];</span><br><span class="line">        if(now+add&gt;=x) continue;</span><br><span class="line">        else&#123;</span><br><span class="line">            ll d=x-add-now;</span><br><span class="line">            add+=d;</span><br><span class="line">            kk-=d;</span><br><span class="line">            if(kk&lt;0) return false;</span><br><span class="line">            b[i+2*r+1]-=d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    IO; // 神奇的语句，定义见上</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; r &gt;&gt; k;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        sum[i]=sum[i-1]+a[i];</span><br><span class="line">        l=min(l,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    while(l&lt;=rr)&#123;</span><br><span class="line">        ll mid=(l+rr)&gt;&gt;1;</span><br><span class="line">        if(check(mid)) l=mid+1;</span><br><span class="line">        else rr=mid-1;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; rr &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>菜是原罪，希望组队赛<del>不要<strong><em>爆零</em></strong></del></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二分答案/" rel="tag"># 二分答案</a>
+          
+            <a href="/tags/差分/" rel="tag"># 差分</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/19/luogu-p1032-字串变换/" rel="next" title="luogu p1032 字串变换">
+                <i class="fa fa-chevron-left"></i> luogu p1032 字串变换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shallow-zzZ</p>
+              <p class="site-description motion-element" itemprop="description">lyhnb</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Castle-Denfense"><span class="nav-number">1.</span> <span class="nav-text">Castle Denfense</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目来源-CodeForces-954G"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">题目来源 CodeForces-954G</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-number">1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Examples"><span class="nav-number">1.4.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#input"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#input-1"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output-1"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#input-2"><span class="nav-number">1.4.0.5.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output-2"><span class="nav-number">1.4.0.6.</span> <span class="nav-text">output</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shallow-zzZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
