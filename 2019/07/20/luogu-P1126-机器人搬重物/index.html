@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="shallow-zzZのblog">
 <meta property="og:description" content="洛谷 P1126 机器人搬重物题目难度 普及+/提高题目描述机器人移动学会（RMI）现在正尝试用机器人搬运物品。机器人的形状是一个直径$1.6米的球。在试验阶段，机器人被用于在一个储藏室中搬运货物。储藏室是一个N×M的网格，有些格子为不可移动的障碍。机器人的中心总是在格点上，当然，机器人必须在最短的时间内把物品搬运到指定的地方。机器人接受的指令有：向前移动1步（Creep）；向前移动2步（Walk">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/07/20/luogu-P1126-机器人搬重物/39.png">
-<meta property="og:updated_time" content="2019-07-20T08:38:13.070Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/20/luogu-P1126-机器人搬重物/luogu-P1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9%5C39.png">
+<meta property="og:updated_time" content="2019-07-21T01:05:21.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="luogu P1126 机器人搬重物">
 <meta name="twitter:description" content="洛谷 P1126 机器人搬重物题目难度 普及+/提高题目描述机器人移动学会（RMI）现在正尝试用机器人搬运物品。机器人的形状是一个直径$1.6米的球。在试验阶段，机器人被用于在一个储藏室中搬运货物。储藏室是一个N×M的网格，有些格子为不可移动的障碍。机器人的中心总是在格点上，当然，机器人必须在最短的时间内把物品搬运到指定的地方。机器人接受的指令有：向前移动1步（Creep）；向前移动2步（Walk">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/20/luogu-P1126-机器人搬重物/39.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/20/luogu-P1126-机器人搬重物/luogu-P1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9%5C39.png">
 
 
 
@@ -308,7 +308,7 @@
 <h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>一个整数，表示机器人完成任务所需的最少时间。如果无法到达，输出−1。 </p>
 <h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><h3 id="Sample-input"><a href="#Sample-input" class="headerlink" title="Sample input"></a>Sample input</h3><p>9 10<br>0 0 0 0 0 0 1 0 0 0<br>0 0 0 0 0 0 0 0 1 0<br>0 0 0 1 0 0 0 0 0 0<br>0 0 1 0 0 0 0 0 0 0<br>0 0 0 0 0 0 1 0 0 0<br>0 0 0 0 0 1 0 0 0 0<br>0 0 0 1 1 0 0 0 0 0<br>0 0 0 0 0 0 0 0 0 0<br>1 0 0 0 0 0 0 0 1 0<br>7 2 2 7 S</p>
 <h3 id="Sample-output"><a href="#Sample-output" class="headerlink" title="Sample output"></a>Sample output</h3><p>12</p>
-<p>测试添加一张图片<br><img src="//yoursite.com/2019/07/20/luogu-P1126-机器人搬重物/39.png" alt="机器人搬重物"></p>
+<p><img src="//yoursite.com/2019/07/20/luogu-P1126-机器人搬重物/luogu-P1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9%5C39.png" alt="机器人搬重物"></p>
 <p>只有五种方案，求最短时间。很明显的bfs。<br>但是这个题目坑十分多。</p>
 <h5 id="1-输入时格图，要转化为点图，因为机器人是在点上行走（若不理解，请多读题）"><a href="#1-输入时格图，要转化为点图，因为机器人是在点上行走（若不理解，请多读题）" class="headerlink" title="1.输入时格图，要转化为点图，因为机器人是在点上行走（若不理解，请多读题）"></a>1.输入时格图，要转化为点图，因为机器人是在点上行走（若不理解，请多读题）</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int <span class="built_in">i</span>=<span class="number">1</span>;<span class="built_in">i</span>&lt;=n;<span class="built_in">i</span>++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(int <span class="built_in">j</span>=<span class="number">1</span>;<span class="built_in">j</span>&lt;=mm;<span class="built_in">j</span>++)&#123;</span><br><span class="line"></span><br><span class="line">            cin &gt;&gt; x;</span><br><span class="line">            <span class="keyword">if</span>(x==<span class="number">1</span>)&#123;</span><br><span class="line"></span><br><span class="line">                m[<span class="built_in">i</span>][<span class="built_in">j</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                m[<span class="built_in">i</span><span class="number">-1</span>][<span class="built_in">j</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                m[<span class="built_in">i</span>][<span class="built_in">j</span><span class="number">-1</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                m[<span class="built_in">i</span><span class="number">-1</span>][<span class="built_in">j</span><span class="number">-1</span>]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -357,6 +357,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/21/luogu-P1040-加分二叉树/" rel="prev" title="luogu P1040 加分二叉树">
+                luogu P1040 加分二叉树 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -433,7 +437,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -446,7 +450,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
