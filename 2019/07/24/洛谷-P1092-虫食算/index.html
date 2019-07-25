@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="dfs,剪枝,搜索,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="洛谷 P1092 虫食算题目难度：提高+/省选-题目描述所谓虫食算，就是原先的算式中有一部分被虫子啃掉了，需要我们根据剩下的数字来判定被啃掉的字母。来看一个简单的例子： 123 43#9865#045+  8468#6633 44445509678  其中$#$号代表被虫子啃掉的数字。根据算式，我们很容易判断：第一行的两个数字分别是5和3，第二行的数字是5。 现在，我们对问题做两个限制：">
+<meta name="keywords" content="dfs,剪枝,搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洛谷 P1092 虫食算">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/洛谷-P1092-虫食算/index.html">
+<meta property="og:site_name" content="shallow-zzZのblog">
+<meta property="og:description" content="洛谷 P1092 虫食算题目难度：提高+/省选-题目描述所谓虫食算，就是原先的算式中有一部分被虫子啃掉了，需要我们根据剩下的数字来判定被啃掉的字母。来看一个简单的例子： 123 43#9865#045+  8468#6633 44445509678  其中$#$号代表被虫子啃掉的数字。根据算式，我们很容易判断：第一行的两个数字分别是5和3，第二行的数字是5。 现在，我们对问题做两个限制：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-25T02:47:43.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="洛谷 P1092 虫食算">
+<meta name="twitter:description" content="洛谷 P1092 虫食算题目难度：提高+/省选-题目描述所谓虫食算，就是原先的算式中有一部分被虫子啃掉了，需要我们根据剩下的数字来判定被啃掉的字母。来看一个简单的例子： 123 43#9865#045+  8468#6633 44445509678  其中$#$号代表被虫子啃掉的数字。根据算式，我们很容易判断：第一行的两个数字分别是5和3，第二行的数字是5。 现在，我们对问题做两个限制：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/24/洛谷-P1092-虫食算/">
+
+
+
+
+
+  <title>洛谷 P1092 虫食算 | shallow-zzZのblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shallow-zzZのblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/洛谷-P1092-虫食算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shallow-zzZ">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shallow-zzZのblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">洛谷 P1092 虫食算</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T21:16:29+08:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="洛谷-P1092-虫食算"><a href="#洛谷-P1092-虫食算" class="headerlink" title="洛谷 P1092 虫食算"></a>洛谷 P1092 虫食算</h1><h5 id="题目难度：提高-省选"><a href="#题目难度：提高-省选" class="headerlink" title="题目难度：提高+/省选-"></a>题目难度：提高+/省选-</h5><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>所谓虫食算，就是原先的算式中有一部分被虫子啃掉了，需要我们根据剩下的数字来判定被啃掉的字母。来看一个简单的例子：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">43</span>#<span class="number">9865</span>#<span class="number">045</span></span><br><span class="line">+  <span class="number">8468</span>#<span class="number">6633</span></span><br><span class="line"> <span class="number">44445509678</span></span><br></pre></td></tr></table></figure>
+
+<p>其中$#$号代表被虫子啃掉的数字。根据算式，我们很容易判断：第一行的两个数字分别是5和3，第二行的数字是5。</p>
+<p>现在，我们对问题做两个限制：</p>
+<a id="more"></a>
+
+<p>首先，我们只考虑加法的虫食算。这里的加法是N进制加法，算式中三个数都有N位，允许有前导的0。</p>
+<p>其次，虫子把所有的数都啃光了，我们只知道哪些数字是相同的，我们将相同的数字用相同的字母表示，不同的数字用不同的字母表示。如果这个算式是N进制的，我们就取英文字母表午的前N个大写字母来表示这个算式中的0到N−1这N个不同的数字：但是这N个字母并不一定顺序地代表0到N−1。输入数据保证N个字母分别至少出现一次。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">BADC</span></span><br><span class="line"><span class="keyword">+CBDA</span></span><br><span class="line"><span class="keyword"> </span>DCCC</span><br></pre></td></tr></table></figure>
+
+<p>上面的算式是一个4进制的算式。很显然，我们只要让ABCD分别代表0123，便可以让这个式子成立了。你的任务是，对于给定的N进制加法算式，求出N个不同的字母分别代表的数字，使得该加法算式成立。输入数据保证有且仅有一组解。</p>
+<h3 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h3><h5 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h5><p>包含四行。<br>第一行有一个正整数N(N≤26)。 </p>
+<p>后面的三行，每行有一个由大写字母组成的字符串，分别代表两个加数以及和。这3个字符串左右两端都没有空格，从高位到低位，并且恰好有N位。</p>
+<h5 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h5><p>一行，即唯一的那组解。 </p>
+<p>解是这样表示的：输出N个数字，分别表示A,B,C,…所代表的数字，相邻的两个数字用一个空格隔开，不能有多余的空格。</p>
+<h3 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h3><h5 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h5><p>5<br>ABCED<br>BDACE<br>EBBAA</p>
+<h5 id="Sample-output"><a href="#Sample-output" class="headerlink" title="Sample output"></a>Sample output</h5><p>1 0 3 4 2</p>
+<p>题解使用非常高级的高斯消元，但是既然被划分为dfs，那就必定有搜索的解法。<br>思路：从算式的低位向高位搜索，这样在搜索过程中很容易想到可行性剪枝：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A</span><br><span class="line">+<span class="keyword">B</span></span><br><span class="line"><span class="keyword">C</span></span><br></pre></td></tr></table></figure>
+
+<p>满足这么一个算式，则会有（A+B）%N==C；考虑到进位也可能有（A+B+1）%N==C，这是本题目第一个剪枝。仔细读题，我们可以发现算式最高位不会产生进位，所以就有第二个可行性剪枝：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num[a[<span class="number">0</span>]-<span class="string">'A'</span>]+num[b[<span class="number">0</span>]-<span class="string">'A'</span>]&lt;n  // num[i]表示i+<span class="string">'A'</span>代表的数字</span><br></pre></td></tr></table></figure>
+
+<p>题目保证只有唯一的一组解，所以在搜索到第一个满足题目的答案之后可以用一个flag快速结束dfs。<br>剪枝函数如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> jian()&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">num</span>[a[<span class="number">0</span>]-<span class="string">'A'</span>]+<span class="built_in">num</span>[b[<span class="number">0</span>]-<span class="string">'A'</span>]&gt;=n) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="built_in">int</span> a1=<span class="built_in">num</span>[a[i]-<span class="string">'A'</span>], b1=<span class="built_in">num</span>[b[i]-<span class="string">'A'</span>], c1=<span class="built_in">num</span>[c[i]-<span class="string">'A'</span>];</span><br><span class="line">        <span class="keyword">if</span>(a1==<span class="number">-1</span> || b1==<span class="number">-1</span> || c1==<span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>((a1+b1)%n!=c1 &amp;&amp; (a1+b1+<span class="number">1</span>)%n!=c1) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在搜索到n位之后需要判断是否满足算式：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> ok()&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=n<span class="number">-1</span>,x=<span class="number">0</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="built_in">int</span> a1=<span class="built_in">num</span>[a[i]-<span class="string">'A'</span>], b1=<span class="built_in">num</span>[b[i]-<span class="string">'A'</span>], c1=<span class="built_in">num</span>[c[i]-<span class="string">'A'</span>];</span><br><span class="line">        <span class="keyword">if</span>((a1+b1+x)%n!=c1) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        x=(a1+b1+x)/n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>dfs大体框架如下</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="keyword">print</span>()&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cout &lt;&lt; num[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> dfs(<span class="keyword">int</span> x)&#123;</span><br><span class="line">    <span class="keyword">if</span>(jian()) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(x==n)&#123;</span><br><span class="line">         <span class="keyword">if</span>(ok()) <span class="keyword">print</span>();  <span class="comment">//自己定义的输出函数</span></span><br><span class="line">         <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!use[i])&#123;</span><br><span class="line">	use[i]=<span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">Next</span>[x]=i;</span><br><span class="line">	dfs(x+<span class="number">1</span>);</span><br><span class="line">	use[i]=<span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">Next</span>[x]=-<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在main函数中计算Next数组，Next数组的作用是从算式低位开始排序dfs顺序,读者可以按照样例手推一下Next助于理解，AC代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,num[<span class="number">30</span>],cnt,Next[<span class="number">30</span>];</span><br><span class="line"><span class="keyword">bool</span> use[<span class="number">30</span>],flag=<span class="literal">false</span>;</span><br><span class="line"><span class="built_in">string</span> a,b,c;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">jian</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num[a[<span class="number">0</span>]-<span class="string">'A'</span>]+num[b[<span class="number">0</span>]-<span class="string">'A'</span>]&gt;=n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">int</span> p=num[a[i]-<span class="string">'A'</span>], q=num[b[i]-<span class="string">'A'</span>], r=num[c[i]-<span class="string">'A'</span>];</span><br><span class="line">        <span class="keyword">if</span>(p==<span class="number">-1</span> || q==<span class="number">-1</span> || r==<span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>((p+q)%n!=r&amp;&amp;(p+q+<span class="number">1</span>)%n!=r) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ok</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>,x=<span class="number">0</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">int</span> p=num[a[i]-<span class="string">'A'</span>], q=num[b[i]-<span class="string">'A'</span>], r=num[c[i]-<span class="string">'A'</span>];</span><br><span class="line">        <span class="keyword">if</span>((p+q+x)%n!=r) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        x=(p+q+x)/n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; num[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(jian()) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(x==n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ok()) print(),flag=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span> &amp;&amp; !flag;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!use[i])&#123;</span><br><span class="line">            num[Next[x]]=i;</span><br><span class="line">            use[i]=<span class="literal">true</span>;</span><br><span class="line">            dfs(x+<span class="number">1</span>);</span><br><span class="line">            num[Next[x]]=<span class="number">-1</span>;</span><br><span class="line">            use[i]=<span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">    <span class="built_in">memset</span>(num,<span class="number">-1</span>,<span class="keyword">sizeof</span>(num));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!use[a[i]-<span class="string">'A'</span>]) Next[cnt++]=a[i]-<span class="string">'A'</span>, use[a[i]-<span class="string">'A'</span>]=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(!use[b[i]-<span class="string">'A'</span>]) Next[cnt++]=b[i]-<span class="string">'A'</span>, use[b[i]-<span class="string">'A'</span>]=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(!use[c[i]-<span class="string">'A'</span>]) Next[cnt++]=c[i]-<span class="string">'A'</span>, use[c[i]-<span class="string">'A'</span>]=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(use,<span class="literal">false</span>,<span class="keyword">sizeof</span>(use));</span><br><span class="line">    dfs(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dfs/" rel="tag"><i class="fa fa-tag"></i> dfs</a>
+          
+            <a href="/tags/剪枝/" rel="tag"><i class="fa fa-tag"></i> 剪枝</a>
+          
+            <a href="/tags/搜索/" rel="tag"><i class="fa fa-tag"></i> 搜索</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/2019-Multi-University-Training-Contest1-1005-Path/" rel="next" title="2019 Multi-University Training Contest1 1005 Path">
+                <i class="fa fa-chevron-left"></i> 2019 Multi-University Training Contest1 1005 Path
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shallow-zzZ</p>
+              <p class="site-description motion-element" itemprop="description">直到这一刻微笑着说话为止，我至少留下了一公升眼泪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#洛谷-P1092-虫食算"><span class="nav-number">1.</span> <span class="nav-text">洛谷 P1092 虫食算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目难度：提高-省选"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">题目难度：提高+/省选-</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.0.2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入格式："><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出格式："><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">输出格式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.0.3.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-output"><span class="nav-number">1.0.3.0.2.</span> <span class="nav-text">Sample output</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1374281077&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shallow</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
