@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="二分答案,贪心,模拟,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="洛谷 P4754 True Vegetable题目难度：提高+/省选-题目描述小A现在有N道题，编号为1,2,⋯,N。每道题的起始毒瘤程度为0或1。在每回合，小A可以将编号连续的K道题的毒瘤程度+1。但小B因为本身比较菜，不是很愿意小A出毒瘤题，所以在wi回合开始时可以向第xi题传播vi点的菜气，使得第xi的毒瘤程度减少vi点（减后可以为负）。这里我们假定菜是有限的，在释放了vi点的菜气后，小B需">
+<meta name="keywords" content="二分答案,贪心,模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洛谷 P4754 True Vegetable">
+<meta property="og:url" content="http://yoursite.com/2019/08/04/洛谷-P4754-True-Vegetable/index.html">
+<meta property="og:site_name" content="shallow-zzZのblog">
+<meta property="og:description" content="洛谷 P4754 True Vegetable题目难度：提高+/省选-题目描述小A现在有N道题，编号为1,2,⋯,N。每道题的起始毒瘤程度为0或1。在每回合，小A可以将编号连续的K道题的毒瘤程度+1。但小B因为本身比较菜，不是很愿意小A出毒瘤题，所以在wi回合开始时可以向第xi题传播vi点的菜气，使得第xi的毒瘤程度减少vi点（减后可以为负）。这里我们假定菜是有限的，在释放了vi点的菜气后，小B需">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-05T02:21:31.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="洛谷 P4754 True Vegetable">
+<meta name="twitter:description" content="洛谷 P4754 True Vegetable题目难度：提高+/省选-题目描述小A现在有N道题，编号为1,2,⋯,N。每道题的起始毒瘤程度为0或1。在每回合，小A可以将编号连续的K道题的毒瘤程度+1。但小B因为本身比较菜，不是很愿意小A出毒瘤题，所以在wi回合开始时可以向第xi题传播vi点的菜气，使得第xi的毒瘤程度减少vi点（减后可以为负）。这里我们假定菜是有限的，在释放了vi点的菜气后，小B需">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/04/洛谷-P4754-True-Vegetable/">
+
+
+
+
+
+  <title>洛谷 P4754 True Vegetable | shallow-zzZのblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shallow-zzZのblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/04/洛谷-P4754-True-Vegetable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shallow-zzZ">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shallow-zzZのblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">洛谷 P4754 True Vegetable</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-04T15:18:26+08:00">
+                2019-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="洛谷-P4754-True-Vegetable"><a href="#洛谷-P4754-True-Vegetable" class="headerlink" title="洛谷 P4754 True Vegetable"></a>洛谷 P4754 True Vegetable</h1><h5 id="题目难度：提高-省选"><a href="#题目难度：提高-省选" class="headerlink" title="题目难度：提高+/省选-"></a>题目难度：提高+/省选-</h5><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>小A现在有N道题，编号为1,2,⋯,N。每道题的起始毒瘤程度为0或1。在每回合，小A可以将编号连续的K道题的毒瘤程度+1。但小B因为本身比较菜，不是很愿意小A出毒瘤题，所以在wi回合开始时可以向第xi题传播vi点的菜气，使得第xi的毒瘤程度减少vi点（减后可以为负）。这里我们假定菜是有限的，在释放了vi点的菜气后，小B需要至少rvi个回合不能释放菜气。现在小A知道了小B释放菜气的计划，他想知道他至少需要多少个回合可以使得每道题的毒瘤程度至少为1。</p>
+<a id="more"></a>
+
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><h3 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h3><h5 id="Sample-input-1"><a href="#Sample-input-1" class="headerlink" title="Sample input 1"></a>Sample input 1</h5><p>6 1 3 2<br>0 0 0 0 0 0<br>1 2<br>2 1 1</p>
+<h5 id="Sample-outpue-1"><a href="#Sample-outpue-1" class="headerlink" title="Sample outpue 1"></a>Sample outpue 1</h5><p>3</p>
+<h5 id="Sample-input-2"><a href="#Sample-input-2" class="headerlink" title="Sample input 2"></a>Sample input 2</h5><p>6 1 3 2<br>1 0 0 0 0 0<br>1 2<br>2 1 1</p>
+<h5 id="Sample-outpue-2"><a href="#Sample-outpue-2" class="headerlink" title="Sample outpue 2"></a>Sample outpue 2</h5><p>2</p>
+<h5 id="Sample-input-3"><a href="#Sample-input-3" class="headerlink" title="Sample input 3"></a>Sample input 3</h5><p>6 1 6 2<br>0 0 0 0 0 0<br>1 2<br>2 1 1</p>
+<h5 id="Sample-outpue-3"><a href="#Sample-outpue-3" class="headerlink" title="Sample outpue 3"></a>Sample outpue 3</h5><p>1</p>
+<h3 id="说明-提示"><a href="#说明-提示" class="headerlink" title="说明/提示"></a>说明/提示</h3><p>1≤N,M≤5×10^5<br>1≤K≤N<br>1≤L≤100<br>a[i]∈{0,1}<br>1=r1&lt;r2&lt;⋯&lt;rL≤2×L<br>1≤wi≤N+L<br>Wi+rvi≤Wi+1<br>1≤xi≤N<br>1≤vi≤L</p>
+<p><del>题目意思很清楚了：真的菜……</del><br>如果直接二分时间，可能有某一个时间点，一个位置骤减，不符合二分性质。<br>我们看到<strong><em>1=r1&lt;r2&lt;⋯&lt;rL≤2×L</em></strong> 可知，释放x的菜气的休息时间大于x。<br>此外另一个关键的一个提示是<strong><em>Wi+rvi≤Wi+1</em></strong><br>这就意味着：小B的每一次操作之后，下一次操作之前足以让小A将损失的毒瘤程度弥补回来。<br>由以上证明内容，很容易证得：在某一次操作之后可以满足条件的话，之后的每次都满足条件。符合二分的性质，所以我们针对小B的操作数进行二分。</p>
+<p>代码君：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> wi, xi, vi;</span><br><span class="line">&#125;op[<span class="number">500005</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,k,l,dl[<span class="number">500005</span>],lq[<span class="number">105</span>],add[<span class="number">500005</span>],mi[<span class="number">500005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(add,<span class="number">0</span>,<span class="keyword">sizeof</span>(add));</span><br><span class="line">    <span class="built_in">memset</span>(mi,<span class="number">0</span>,<span class="keyword">sizeof</span>(mi));</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">0</span>, cntt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;pos;i++) mi[op[i].xi]-=op[i].vi;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        x+=add[i];</span><br><span class="line">        <span class="keyword">if</span>(x+dl[i]+mi[i]&lt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = <span class="number">1</span>-mi[i]-dl[i]-x;</span><br><span class="line">            x+=temp; cntt+=temp;</span><br><span class="line">            add[min(i+k,n+<span class="number">1</span>)]-=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cntt&gt;=op[pos].wi) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cntt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> wi,xi,vi,cnt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; l;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">cin</span> &gt;&gt; dl[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=l;i++) <span class="built_in">cin</span> &gt;&gt; lq[i];</span><br><span class="line">    op[<span class="number">0</span>]=Node&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    op[m+<span class="number">1</span>]=Node&#123;<span class="number">0x7fffffff</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; wi &gt;&gt; xi &gt;&gt; vi;</span><br><span class="line">        op[++cnt]=Node&#123;wi,xi,vi&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">1</span>,r=m+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(check(mid)&gt;=<span class="number">0</span>) r=mid<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; check(l) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比较神奇的是，这个题目的数据可能比较水，因为第一发本蒟蒻直接二分时间竟然也AC了……</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二分答案/" rel="tag"><i class="fa fa-tag"></i> 二分答案</a>
+          
+            <a href="/tags/贪心/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+          
+            <a href="/tags/模拟/" rel="tag"><i class="fa fa-tag"></i> 模拟</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/24/洛谷-P1092-虫食算/" rel="next" title="洛谷 P1092 虫食算">
+                <i class="fa fa-chevron-left"></i> 洛谷 P1092 虫食算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shallow-zzZ</p>
+              <p class="site-description motion-element" itemprop="description">直到这一刻微笑着说话为止，我至少留下了一公升眼泪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#洛谷-P4754-True-Vegetable"><span class="nav-number">1.</span> <span class="nav-text">洛谷 P4754 True Vegetable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目难度：提高-省选"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">题目难度：提高+/省选-</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.0.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.0.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.0.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.0.4.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-input-1"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">Sample input 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-outpue-1"><span class="nav-number">1.0.4.0.2.</span> <span class="nav-text">Sample outpue 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-input-2"><span class="nav-number">1.0.4.0.3.</span> <span class="nav-text">Sample input 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-outpue-2"><span class="nav-number">1.0.4.0.4.</span> <span class="nav-text">Sample outpue 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-input-3"><span class="nav-number">1.0.4.0.5.</span> <span class="nav-text">Sample input 3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-outpue-3"><span class="nav-number">1.0.4.0.6.</span> <span class="nav-text">Sample outpue 3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说明-提示"><span class="nav-number">1.0.5.</span> <span class="nav-text">说明/提示</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1374281077&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shallow</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
